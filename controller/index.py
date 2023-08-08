@@ -24,8 +24,7 @@ def download_fun():
             return send_file(video_info, as_attachment=True, download_name=new_filename)
         # else:
         #     return "File not found"
-        flash(('Periods are Assigned to Teacher  Successfully !!!' , 'principal_periods'))
-        return render_template('success_page.html' , download_link = "file_for_download.mp4")
+        return render_template('download_fail_page.html' , download_link = "file_for_download.mp4")
     
     
 
