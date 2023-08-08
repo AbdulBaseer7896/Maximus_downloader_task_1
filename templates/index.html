@@ -1,8 +1,3 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <!DOCTYPE html>
 <html>
     
@@ -26,6 +21,8 @@
 				</div>
 				<div class="d-flex justify-content-center form_container">
 					<form action="{{ url_for('download_fun') }}" method="post">
+						<h3 class="text-center">Maximus Downloader</h3>
+						<br>
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -36,7 +33,17 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="video_quality" class="form-control input_pass" value="" placeholder="Video Quality">
+							<select name="video_quality" class="form-control input_pass" aria-placeholder="Select Video Resolution">
+								<!-- <option value="best">Select Video Resolution</option> -->
+								<!-- <option value="best">Best</option> -->
+								<option value="160">144p</option>
+								<option value="133">240p</option>
+								<option value="18">360p</option>
+								<option value="135">480p</option>
+								<option value="22">720p</option>
+								<option value="137">1080p</option>
+								<!-- Add more options for other qualities -->
+							</select>
 						</div>
 						<div class="form-group">
 							<div class="custom-control custom-checkbox">
@@ -44,24 +51,37 @@
 								<!-- <label class="custom-control-label" for="customControlInline">Remember me</label> -->
 							</div>
 						</div>
-							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<button type="submit" class="btn login_btn">Download NOw</button>
-				   </div>
+						<div class="d-flex justify-content-center mt-3 login_container">
+							<button type="submit" class="btn login_btn">Download Now</button>
+						</div>
+						<!-- <p class="text-center">Kindly enter the Video URL and Select you video quality and press the "Download Now" Button</p> -->
 					</form>
-
 					
 				</div>
-		
 				<div class="mt-4">
+					
+					<br>
 					<div class="d-flex justify-content-center links">
 						<!-- Don't have an account? <a href="#" class="ml-2">Sign Up</a> -->
 					</div>
 					<div class="d-flex justify-content-center links">
 						<!-- <a href="#">Forgot your password?</a> -->
 					</div>
+					
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="d-flex justify-content-center mt-3" id="downloadStatus" style="display: none;">
+		<p>Downloading... <i class="fas fa-spinner fa-spin"></i></p>
+	</div>
+	<script>
+		$(document).ready(function() {
+			$('#downloadButton').click(function() {
+				$('#downloadButton').hide();
+				$('#downloadStatus').show();
+			});
+		});
+	</script>
 </body>
 </html>
