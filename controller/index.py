@@ -10,12 +10,14 @@ def download_fun():
     if request.method == 'POST':
         data = request.form.to_dict()
         print("This is form data", data)
-        print("This is form data", data['video_url'])
         video_quality = request.form['video_quality']
         
         try:
             format = {'format': f'bestvideo[height<={video_quality}]+bestaudio/best[height<={video_quality}]'}
-            info = obj.download_video(data['video_url'], format)
+            try:
+                obj.download_video(data['video_url'], format)
+            except:
+                return render_template('download_fail_page.html')
         except:
             format = {'format': 'best'}
             obj.download_video(data['video_url'], format)
